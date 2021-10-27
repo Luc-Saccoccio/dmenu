@@ -547,6 +547,16 @@ insert:
 			return;
 		/* fallthrough */
 	case XK_Up:
+		if (!sel->left && next) {
+			curr = matchend;
+			calcoffsets();
+			curr = prev;
+			calcoffsets();
+			while (next && (curr = curr->right))
+				calcoffsets();
+			sel = matchend;
+			break;
+		}
 		if (sel && sel->left && (sel = sel->left)->right == curr) {
 			curr = prev;
 			calcoffsets();
@@ -583,6 +593,11 @@ insert:
 			return;
 		/* fallthrough */
 	case XK_Down:
+		if (!sel->right) {
+			sel = curr = matches;
+			calcoffsets();
+			break;
+		}
 		if (sel && sel->right && (sel = sel->right) == next) {
 			curr = next;
 			calcoffsets();
