@@ -547,15 +547,20 @@ insert:
 			return;
 		/* fallthrough */
 	case XK_Up:
-		if (!sel->left && next) {
-			curr = matchend;
-			calcoffsets();
-			curr = prev;
-			calcoffsets();
-			while (next && (curr = curr->right))
+		if (!sel->left) {
+			if (next) {
+				curr = matchend;
 				calcoffsets();
-			sel = matchend;
-			break;
+				curr = prev;
+				calcoffsets();
+				while (next && (curr = curr->right))
+					calcoffsets();
+				sel = matchend;
+				break;
+			} else {
+				sel = matchend;
+				break;
+			}
 		}
 		if (sel && sel->left && (sel = sel->left)->right == curr) {
 			curr = prev;
