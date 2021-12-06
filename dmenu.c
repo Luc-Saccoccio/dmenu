@@ -32,7 +32,15 @@
 #define OPAQUE                0xffU
 
 /* enums */
-enum { SchemeNorm, SchemeSel, SchemeOut, SchemeNormHighlight, SchemeSelHighlight, SchemeOutHighlight, SchemeLast }; /* color schemes */
+enum { 
+	SchemeNorm,
+	SchemeSel,
+	SchemeOut,
+	SchemeNormHighlight,
+	SchemeSelHighlight,
+	SchemeOutHighlight,
+	SchemeLast
+}; /* color schemes */
 
 struct item {
 	char *text;
