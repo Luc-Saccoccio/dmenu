@@ -32,7 +32,7 @@
 #define OPAQUE                0xffU
 
 /* enums */
-enum { 
+enum {
 	SchemeNorm,
 	SchemeSel,
 	SchemeOut,
@@ -906,6 +906,9 @@ main(int argc, char *argv[])
 		else if (!strcmp(argv[i], "-s")) { /* case-sensitive item matching */
 			fstrncmp = strncmp;
 			fstrstr = strstr;
+		} else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
+		    fstrncmp = strncasecmp;
+            fstrstr = cistrstr;
 		} else if (!strcmp(argv[i], "-r"))
 			reject_no_match = 1;
 		else if (!strcmp(argv[i], "-r"))
